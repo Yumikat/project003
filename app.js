@@ -44,7 +44,7 @@ const playlist = [
     {
         id: 8,
         title: "Let It Go",
-        singer: Idina Mendzel,
+        singer: "Idina Mendzel",
         genre: "disney"
     }
 ]
