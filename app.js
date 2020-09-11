@@ -40,6 +40,12 @@ const playlist = [
         title: "Never Gonna Give You Up",
         singer: "Rick Astley",
         genre: "80s"
+    },
+    {
+        id: 8,
+        title: "Let It Go",
+        singer: Idina Mendzel,
+        genre: "disney"
     }
 ]
 
