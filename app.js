@@ -34,6 +34,12 @@ const playlist = [
         title: "Anaconda",
         singer: "Nicki Minaj",
         genre: "rap"
+    },
+    {
+        id: 7,
+        title: "Never Gonna Give You Up",
+        singer: "Rick Astley",
+        genre: "80s"
     }
 ]
 
