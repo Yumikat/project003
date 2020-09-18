@@ -87,16 +87,17 @@ const buttons = [
 
 function renderTable() {
     playlist.forEach(function (list) {
-        $(".display").append(`<p>${list.title}</p>
-        <p>${list.singer}</p><hr>`);
+        $(".display").append(`<p>Song: ${list.title}</p>
+        <p>Singer: ${list.singer}</p><hr>`);
     });
 }
 
-function renderNewtable(x) {
+function renderNewtable(x, y) {
     $(".display").empty();
     x.forEach(function (list) {
-        $(".display").append(`<p>${list.title}</p>
-        <p>${list.singer}</p><hr>`);
+        $(".display").append(`<p>Song: ${list.title}</p>
+        <p>Singer: ${list.singer}</p>
+        <p>Genre: ${list.genre}</p><hr>`);
     });
 }
 
@@ -131,7 +132,7 @@ function sortClick(x) {
         case "Genre":
             console.log("Sort by genre");
             newPlaylist = playlist.sort((a, b) => a.genre.toLowerCase() < b.genre.toLowerCase());
-            renderNewtable(newPlaylist);
+            renderNewtable(newPlaylist, genre);
             console.log(newPlaylist);
             break;
         default:
