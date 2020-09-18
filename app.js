@@ -124,14 +124,30 @@ function sortClick(x) {
             renderNewtable(newPlaylist);
             break;
         case "Singer":
-            newPlaylist = playlist.sort((a, b) => a.singer.toLowerCase() < b.singer.toLowerCase());
+            newPlaylist = playlist.sort(function(a, b){
+                if (a.singer.toLowerCase() < b.singer.toLowerCase()){
+                    return -1;
+                }
+                else if (a.singer.toLowerCase() > b.singer.toLowerCase()){
+                    return 1;
+            }
+            return 0;
+            });
             renderNewtable(newPlaylist);
             console.log("Sort by singer");
             console.log(newPlaylist);
             break;
         case "Genre":
             console.log("Sort by genre");
-            newPlaylist = playlist.sort((a, b) => a.genre.toLowerCase() < b.genre.toLowerCase());
+            newPlaylist = playlist.sort(function(a, b) {
+                if (a.genre.toLowerCase() < b.genre.toLowerCase()){
+                    return -1;
+                }
+                else if (a.genre.toLowerCase() > b.genre.toLowerCase()){
+                    return 1;
+            }
+            return 0;
+        }); 
             renderNewtable(newPlaylist);
             console.log(newPlaylist);
             break;
