@@ -1,51 +1,68 @@
+
 const playlist = [
     {
         id: 1,
         title: "Always Be My Baby",
         singer: "Mariah Carey",
-        genre: "pop"
+        genre: "pop",
+        gender: "female",
+        sang: false
     },
     {
         id: 2,
         title: "Zombie",
         singer: "Cranberries",
-        genre: "alternative rock"
+        genre: "alternative rock",
+        gender: "female",
+        sang: false
     },
     {
         id: 3,
         title: "Monster",
         singer: "Bigbang",
-        genre: "kpop"
+        genre: "kpop",
+        gender: "male",
+        sang: false
     },
     {
         id: 4,
         title: "Pressure",
         singer: "Milk & Bone",
-        genre: "electronic"
+        genre: "electronic",
+        gender: "female",
+        sang: false
     },
     {
         id: 5,
         title: "I Won't Say (I'm In Love)",
         singer: "Susan Egan, Cheryl Freeman, LaChanze, Vaneese Thomas, Lillias White",
-        genre: "disney"
+        genre: "disney",
+        gender: "female",
+        sang: false
     },
     {
         id: 6,
         title: "Anaconda",
         singer: "Nicki Minaj",
-        genre: "rap"
+        genre: "rap",
+        gender: "female",
+        sang: false
     },
     {
         id: 7,
         title: "Never Gonna Give You Up",
         singer: "Rick Astley",
-        genre: "80s"
+        genre: "80s",
+        gender: "male",
+        sang: false
     },
     {
         id: 8,
         title: "Let It Go",
         singer: "Idina Mendzel",
-        genre: "disney"
+        genre: "disney",
+        gender: "female",
+        sang: false
     }
 ]
 
@@ -69,20 +86,63 @@ const buttons = [
 ]
 
 function renderTable() {
-    for (i = 0; i < playlist.length; i++){
-        $(".display").append(`<p>${playlist[i].title}</p>
-        <p>${playlist[i].singer}</p>`);
-        $(".display").append("<hr>");
-    }
+    playlist.forEach(function (list) {
+        $(".display").append(`<p>${list.title}</p>
+        <p>${list.singer}</p><hr>`);
+    });
 }
-//console.log(playlist[0].title);
-//$(".display").text(playlist[0].title);
+
+function renderNewtable(x) {
+    $(".display").empty();
+    x.forEach(function (list) {
+        $(".display").append(`<p>${list.title}</p>
+        <p>${list.singer}</p><hr>`);
+    });
+}
 
 function renderButtons() {
-    for (i = 0; i < buttons.length; i++){
-        $(".buttonSort").append(`<button>${buttons[i].text}</button>`).attr(`${buttons[i].id}`);
+    for (i = 0; i < buttons.length; i++) {
+        var button = $("<button>").addClass("buttons")
+            .attr("data-id", `${buttons[i].id}`)
+            .attr("data-button", `${buttons[i].text}`);
+        button.text(`${buttons[i].text}`);
+        $(".buttonSort").append(button);
+    }
+}
+function sortClick(x) {
+    var newPlaylist;
+    switch (x) {
+        case "Female":
+            newPlaylist = playlist.filter((song) => song.gender == "female");
+            console.log(newPlaylist);
+            renderNewtable(newPlaylist);
+            break;
+        case "Male":
+            newPlaylist = playlist.filter((song) => song.gender == "male");
+            console.log(newPlaylist);
+            renderNewtable(newPlaylist);
+            break;
+        case "Singer":
+            newPlaylist = playlist.sort((a, b) => a.singer.toLowerCase() < b.singer.toLowerCase());
+            renderNewtable(newPlaylist);
+            console.log("Sort by singer");
+            console.log(newPlaylist);
+            break;
+        case "Genre":
+            console.log("Sort by genre");
+            newPlaylist = playlist.sort((a, b) => a.genre.toLowerCase() < b.genre.toLowerCase());
+            renderNewtable(newPlaylist);
+            console.log(newPlaylist);
+            break;
+        default:
+            renderTable();
     }
 }
 
 renderButtons();
 renderTable();
+
+$(".buttons").on("click", function () {
+    var textClick = $(this).attr("data-button");
+    sortClick(textClick);
+});
